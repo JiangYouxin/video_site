@@ -10,6 +10,7 @@ var express = require('express')
   , path = require('path');
 
 var app = express();
+var videoDir = 'F:/A';
 
 app.configure(function(){
   app.set('port', 80);
@@ -23,6 +24,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(videoDir));
 });
 
 app.configure('development', function(){
@@ -30,18 +32,13 @@ app.configure('development', function(){
 });
 
 app.get('/', function(req, res){
-  fs.readdir('F:/A', function(err, files){
+  fs.readdir(videoDir, function(err, files){
     res.render('index', { 'files': files });
   });
 });
 
 app.get('/play/:key', function(req, res){
   res.render('play', { 'key': req.params.key });
-});
-
-app.get('/file/:key', function(req, res){
-  var file = req.params.key;
-  res.send(file);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
