@@ -52,6 +52,13 @@ Released   : 20081230
           <p>This particular template goes not have a naviagation panel; it was intended for simple sites.   I am also making a version of this template with navigation, check out <a href="http://www.bryantsmith.com">BryantSmith.com</a> to get it.</p>
           <p>&nbsp;</p>
           <p><a href="index.html">(read more)</a></p>
+<% 
+for (var i in files) {
+  var name = files[i];
+  var url = '/play?key=' + encodeURIComponent(name);
+%>
+          <p><a href="<%= url %>"><%= name %></a></p>
+<% } %>
         </div>
         <div class="contentTitle"><h1>Yet Another?</h1></div>
         <div class="contentText">Each title is an H1 tag, so choose them carefully :)</div>  

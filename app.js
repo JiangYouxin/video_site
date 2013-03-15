@@ -5,6 +5,7 @@
 
 var express = require('express')
   , http = require('http')
+  , fs = require('fs')
   , path = require('path');
 
 var app = express();
@@ -25,8 +26,20 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', function(req, res) {
-  res.render('index');
+app.get('/', function(req, res){
+  fs.readdir('F:/A', function(err, files){
+    res.render('index', { 'files': files });
+  });
+});
+
+app.get('/play', function(req, res){
+  var file = req.key;
+  res.send(file);
+});
+
+app.get('/file', function(req, res){
+  var file = req.key;
+  res.send(file);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
