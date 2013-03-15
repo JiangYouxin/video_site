@@ -6,6 +6,7 @@
 var express = require('express')
   , http = require('http')
   , fs = require('fs')
+  , expressLayouts = require('express-ejs-layouts')
   , path = require('path');
 
 var app = express();
@@ -14,6 +15,8 @@ app.configure(function(){
   app.set('port', 80);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
+  app.set('layout', 'layout');
+  app.use(expressLayouts); 
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
