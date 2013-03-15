@@ -35,13 +35,12 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/play', function(req, res){
-  var file = req.key;
-  res.send(file);
+app.get('/play/:key', function(req, res){
+  res.render('play', { 'key': req.params.key });
 });
 
-app.get('/file', function(req, res){
-  var file = req.key;
+app.get('/file/:key', function(req, res){
+  var file = req.params.key;
   res.send(file);
 });
 

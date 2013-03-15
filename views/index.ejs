@@ -2,7 +2,7 @@
 <% 
 for (var i in files) {
   var name = files[i];
-  var url = '/play?key=' + encodeURIComponent(name);
+  var url = '/play/' + encodeURIComponent(name);
 %>
           <p><a href="<%= url %>"><%= name %></a></p>
 <% } %>
