@@ -12,6 +12,7 @@ var app = express();
 app.configure(function(){
   app.set('port', 80);
   app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -22,6 +23,10 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
+});
+
+app.get('/', function(req, res) {
+  res.render('index');
 });
 
 http.createServer(app).listen(app.get('port'), function(){
